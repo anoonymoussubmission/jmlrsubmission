@@ -366,7 +366,7 @@ def run_method(config, dataset_name, algorithm, n_points, input_dim, embedding_d
                                                                                      error_change_threshold=error_change_threshold)
         # compute triplet error for train and test data
         train_error = triplet_error_batches(x, train_triplets)
-    elif algorithm == 'landmark_oe':
+    elif algorithm == 'loe':
         x, time_taken, train_error = landmark_oe.landmark_oe_with_data(data=vec_data, dim=embedding_dimension,
                                                                        trip_num=triplet_num,
                                                                        learning_rate=learning_rate, epochs=epochs,
@@ -399,58 +399,7 @@ def run_method(config, dataset_name, algorithm, n_points, input_dim, embedding_d
             error_change_threshold=error_change_threshold)
         train_error = triplet_error_batches(x, all_triplets)
 
-    elif algorithm == 'lloe_full':
-        num_landmarks = config['optimizer_params']['num_landmarks']
-        subset_size = config['optimizer_params']['subset_size']
-        phase1_learning_rate = config['optimizer_params']['phase1_learning_rate']
-        phase2_learning_rate = config['optimizer_params']['phase2_learning_rate']
-        target_loss = config['optimizer_params']['target_loss']
-
-        number_of_landmarks = min(int(num_landmarks * n_points), 100)
-        subset_size = subset_size * number_of_landmarks
-
-        landmarks, first_phase_indices, \
-        first_phase_subset_size, first_phase_reconstruction, \
-        first_phase_loss, first_phase_triplet_error, first_phase_test_triplet_error, time_first_phase = first_phase(
-            num_landmarks=number_of_landmarks,
-            subset_size=subset_size,
-            data=vec_data, dataset_size=n_points,
-            embedding_dim=embedding_dimension, epochs=epochs,
-            target_loss=target_loss,
-            first_phase_lr=phase1_learning_rate,
-            device=device,
-            bs=batch_size,
-            logger=logger)
-
-        embedded_indices = first_phase_indices
-        embedded_points = first_phase_reconstruction
-        non_embedded_indices = list(set(range(vec_data.shape[0])).difference(set(embedded_indices)))
-        non_embedded_points = vec_data[non_embedded_indices, :]
-
-        my_oracle = Oracle(data=vec_data)
-        logger.info('Second Phase: ')
-        logger.info('Oracle Created...')
-
-        logger.info('Computing LLOE - Phase 2...')
-        # second phase for embedding point by point update
-        second_phase_embeddings_index, \
-        second_phase_embeddings, time_second_phase = second_phase(my_oracle=my_oracle,
-                                                                  non_embedded_indices=non_embedded_indices,
-                                                                  embedded_indices=embedded_indices,
-                                                                  first_phase_embedded_points=embedded_points,
-                                                                  dim=embedding_dimension,
-                                                                  lr=phase2_learning_rate, logger=logger)
-
-        # combine the first phase and second phase points and index
-        x = np.zeros((vec_data.shape[0], embedding_dimension))
-        # phase 1 points
-        x[first_phase_indices] = first_phase_reconstruction
-        # second phase points
-        x[second_phase_embeddings_index] = second_phase_embeddings
-        time_taken = time_first_phase + time_second_phase
-
-
-    elif algorithm == 'lloe_phase2':
+    elif algorithm == 'lloe':
         num_landmarks = config['optimizer_params']['num_landmarks']
         subset_size = config['optimizer_params']['subset_size']
         phase1_learning_rate = config['optimizer_params']['phase1_learning_rate']

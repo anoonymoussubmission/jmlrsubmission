@@ -137,7 +137,7 @@ def first_phase_soe(num_landmarks, subset_size, data, dataset_size, embedding_di
 
         trips = gen_triplet_data(subset_data, trip_indices, batch_size=trip_indices.shape[0])
 
-        embedding_of_subset, loss_history, triplet_error_history, time_taken = soe_adam(triplets=trips,
+        embedding_of_subset, loss_history, triplet_error_history, time_taken, _ = soe_adam(triplets=trips,
                                                                                         n=each_subset_size,
                                                                                         dim=embedding_dim,
                                                                                         epochs=epochs,
@@ -394,7 +394,7 @@ def embedding_rest_indices(my_oracle, non_embedded_indices, embedded_indices, fi
         total_time += (end_time - begin_time)
         shells = np.asarray(shells)
 
-        # tinme this
+        # time this
         embedding, additional_time = loss_second_phase_loss_adam(embedding_dim=dim, anchors_in_shells=shells[:, 0],
                                                                  distances_to_p=shells[:, 1],
                                                                  distances_to_q=shells[:, 2], lr=lr, logger=logger)

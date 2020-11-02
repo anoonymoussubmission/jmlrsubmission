@@ -67,7 +67,7 @@ def select_dataset(dataset_name, input_dim=2, n_samples=10000):
         vec_data, labels = data[0], data[1]
 
     elif dataset_name == 'kdd_cup':
-        cover_train = fetch_kddcup99(data_home='./downloads', download_if_missing=True)
+        cover_train = fetch_kddcup99(data_home='./datasets', download_if_missing=True)
         vec_data = cover_train.data
         string_labels = cover_train.target
         vec_data, labels = feature_tranformers.vectorizer_kdd(data=vec_data, labels=string_labels)

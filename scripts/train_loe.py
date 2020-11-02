@@ -52,10 +52,11 @@ def main(args):
         run_hyper_search(config=config)
     else:
         vec_data, labels = select_dataset(dataset_name, n_samples=n_samples, input_dim=input_dim)
+        n_points = vec_data.shape[0]
         device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
-        logn = int(np.log2(n_samples))
-        triplet_num = triplet_multiplier * logn * n_samples * embedding_dimension
+        logn = int(np.log2(n_points))
+        triplet_num = triplet_multiplier * logn * n_points * embedding_dimension
 
         batch_size = min(batch_size, triplet_num)
 
@@ -104,7 +105,7 @@ def main(args):
         knn_error_ord_emb, knn_error_true_emb = knn_classification_error(x, vec_data, labels)
 
         # sample points for tsne visualization
-        subsample = np.random.permutation(n_samples)[0:500]
+        subsample = np.random.permutation(n_points)[0:500]
         x = x[subsample, :]
         sub_labels = labels[subsample]
 

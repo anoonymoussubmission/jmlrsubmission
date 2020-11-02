@@ -10,7 +10,7 @@
   "n_test_triplets": 10000,
   "gpu_id": -1,
   "log": {
-    "path":"logs/lloe_phase2"
+    "path":"logs/lloe"
   },
   "optimizer_params": {
     "phase1_learning_rate": 1,

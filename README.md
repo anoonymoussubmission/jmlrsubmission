@@ -30,19 +30,19 @@ Several datasets are integrated into the library to allow the user to experiment
 
 ```python docs_artifacts/print_datasets.py```
 
-## Test the methods on a simple '2D' Dataset
-To evaluate the methods, we provide sample configuration files for each algorithm. The configuration files corresponding to each method contain all the parameters required for the respective method. As an example, to run any method on the dataset "aggregation":
+## Test the methods on the '2D' Dataset Aggregation
+To evaluate the methods, we provide sample configuration files for each algorithm. The configuration files contain all the parameters required for the respective method, dataset, and experiment. As an example, we provide configuration files for every method to run once on the dataset "aggregation":
 
 ```python scripts/train_UMI.py -config sample_configs/UMI/aggregation_baseline.json```
 
-After the execution of the above scripts, you can check the log file, which is saved for each method in ```logs/UMI/```. The name of the log file ```logs/UMI/*.log``` includes most of the important parameters of the experiment specified in the config file.
+After the execution of the above scripts, you can find a log file and a 2D plot, which is saved for each method in ```logs/UMI/```. The log file ```logs/UMI/*.log``` includes most of the important parameters of the experiment specified in the config file.
 
-## Examples for Evaluation of Methods: 
-For each of the experiment provided in the paper, we provide a sample config file corresponding to one dataset. The commands to run each of the experiment are provided here. The sample config files can be followed to run the experiments for other datasets as well. 
+## Evaluation Experiments of the main paper 
+For each kind of experiment provided in the paper, we provide a sample config file for one dataset. The commands to run each of the experiment are provided below. The sample config files can easily be changed to run the experiments for other datasets as well. Note, that some of these experiments need a long time to run. We recommend to run the 'Increasing Triplets' experiment for quick results.  
  
 ### Increasing Sample size.
 
-```python scripts/evaluation_experiments.py -config sample_configs/UMI/increasing_sample_size_gmm.json```
+```python scripts/evaluation_experiments.py -config sample_configs/UMI/increasing_sample_size_uniform.json```
 
 ### Increasing Triplets
 

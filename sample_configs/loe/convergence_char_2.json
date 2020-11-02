@@ -1,13 +1,13 @@
 {
   "dataset_selected": "char",
-  "algorithm": "landmark_oe",
+  "algorithm": "loe",
   "error_change_threshold": -2,
   "optimizer": "adam",
   "nb_epochs": 2000,
   "n_test_triplets": 10000,
   "gpu_id": 0,
   "log": {
-    "path":"logs/landmark_oe/convergence_multiplier_2"
+    "path":"logs/loe/convergence_multiplier_2"
   },
   "tradeoff_set": {
     "number_of_points": [-1],

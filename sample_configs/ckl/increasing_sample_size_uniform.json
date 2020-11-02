@@ -1,5 +1,5 @@
 {
-  "dataset_selected": "gmm",
+  "dataset_selected": "uniform",
   "algorithm": "ckl",
   "error_change_threshold": 0.005,
   "optimizer": "adam",
@@ -9,10 +9,10 @@
   "mu": 0.1,
   "gpu_id": 0,
   "log": {
-    "path":"logs/ckl/increasing_sample_size"
+    "path":"logs/ckl/increasing_n"
   },
   "tradeoff_set": {
-    "number_of_points": [128, 256, 512, 1024, 2048, 4096],
+    "number_of_points": [10000, 1000, 100],
     "input_dimension": [2],
     "output_dimension": [2],
     "batch_size": [1000000],

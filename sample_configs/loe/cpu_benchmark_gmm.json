@@ -1,13 +1,13 @@
 {
   "dataset_selected": "gmm",
-  "algorithm": "landmark_oe",
+  "algorithm": "loe",
   "error_change_threshold": 0.005,
   "optimizer": "adam",
   "nb_epochs": 1000,
   "n_test_triplets": 10000,
   "gpu_id": 0,
   "log": {
-    "path":"logs/landmark_oe/cpu_benchmark"
+    "path":"logs/loe/cpu_benchmark"
   },
   "tradeoff_set": {
     "number_of_points": [128, 256, 512, 1024, 2048, 4096],
