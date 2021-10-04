@@ -48,6 +48,11 @@ For each kind of experiment provided in the paper, we provide a sample config fi
 
 ```python scripts/evaluation_experiments.py -config sample_configs/UMI/increasing_triplets_compound.json```
 
+### Increasing Noise (Bernoulli, Gaussian)
+
+```python scripts/evaluation_experiments.py -config sample_configs/UMI/aggregation_bernoulli.json```
+```python scripts/evaluation_experiments.py -config sample_configs/UMI/aggregation_gaussian.json```
+
 ### Increasing Embedding dimension
 
 ```python scripts/evaluation_experiments.py -config sample_configs/UMI/increasing_d_kmnist.json```
